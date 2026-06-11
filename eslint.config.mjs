@@ -1,16 +1,10 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
   {
     rules: {
       // ---- 비대화 방지 (숫자 게이트) ----
@@ -23,7 +17,7 @@ const eslintConfig = [
         { max: 40, skipBlankLines: true, skipComments: true },
       ],
       "max-depth": ["error", 3],
-      "complexity": ["error", 10],
+      complexity: ["error", 10],
       "max-params": ["error", 3],
 
       // ---- 타입 탈출 차단 ----
@@ -57,9 +51,8 @@ const eslintConfig = [
       "max-lines": "off",
     },
   },
-  {
-    ignores: [".next/**", "node_modules/**", "next-env.d.ts"],
-  },
-];
+  // eslint-config-next 기본 ignore 재정의
+  globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
+]);
 
 export default eslintConfig;

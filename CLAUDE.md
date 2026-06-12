@@ -23,6 +23,7 @@
 - 폴더 구조·레이어 규칙 → `architecture` 스킬
 - 코드 컨벤션 → `conventions` 스킬
 - 배포 절차 → `shipping` 스킬
+- UI/화면 작업 → `design` 스킬 (토스 스타일 디자인 시스템)
 - 의사결정 기록 → `log-decision` 스킬
 - 빌드 후 블로그 글 → `write-post` 스킬 (+ `blog-style` 문체)
 
